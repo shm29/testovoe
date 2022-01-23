@@ -1,0 +1,21 @@
+# Local export path.
+# Use if you want to run Minio on a custom port.
+MINIO_ACCESS_KEY={{ minio_access_key }}
+MINIO_SECRET_KEY={{ minio_secret_key }}
+
+# Set the hosts and volumes MinIO uses at startup
+# The command uses MinIO expansion notation {x...y} to denote a
+# sequential series.
+#
+# The following example covers four MinIO hosts
+# with 4 drives each at the specified hostname and drive locations.
+
+MINIO_VOLUMES="http://192.168.29.2{1...3}/home/minio/export{1...2}"
+
+# Set all MinIO server options
+#
+# The following explicitly sets the MinIO Console listen address to
+# port 9001 on all network interfaces. The default behavior is dynamic
+# port selection.
+
+MINIO_OPTS="--console-address :9001"

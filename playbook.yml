@@ -1,6 +1,14 @@
 ---
   - hosts: all
     become: true
+    become_user: root
     roles:
       - nginx
       - minio
+    vars:
+      minio_access_key: testovoe
+      minio_secret_key: sektretnoe
+      minio_volumes:
+        - /home/minio/export1
+        - /home/minio/export2
+
