@@ -1,8 +1,7 @@
 ---
 # defaults file for nginx
-nginx_user: nginx
 nginx_port: 80
 nginx_max_body_size: 256m
 nginx_worker_processes: 1
 nginx_worker_connections: 1024
-service_port: 9000;
+service_port: 9000
