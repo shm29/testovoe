@@ -1,2 +1,30 @@
 ---
 # tasks file for nginx
+- name: install nginx
+  apt:
+    name: nginx
+    state: latest
+
+- name: modify nginx.conf
+  template:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+    owner: "{{ nginx_user }}"
+
+- name: copy default.conf
+  template:
+    src: default.conf
+    dest: /etc/nginx/conf.d/default.conf
+    owner: "{{ nginx_user }}"
+  notify: restart nginx
+
+- name: adjust upstream based on host's ip
+  lineinfile:
+    dest: /etc/nginx/conf.d/default.conf
+    regexp: "{{ ansible_ssh_host }}"
+    line: "\tserver 127.0.0.1:{{ nginx_port }}"
+
+- name: start nginx
+  service:
+    name: nginx
+    state: started

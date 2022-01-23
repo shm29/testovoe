@@ -11,7 +11,7 @@ Vagrant.configure("2") do |config|
       machine.vm.network :private_network, ip: "192.168.29.2#{id}"
       machine.vm.provision :ansible do |ansible|
         ansible.playbook ='playbook.yml'
-        ansible.inventory_path = 'inventory.ini'
+        ansible.inventory_path = 'hosts.ini'
       end
     end
   end
