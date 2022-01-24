@@ -1,19 +1,20 @@
-1. Check variables presented in playbook.yml, change to your liking if needed
+# Testovoe
+### Run this commands
+1. Check variables presented in playbook.yml, change them to your likings if needed
  
-2. run vagrant
+2. Run vagrant
 ```
 vagrant up
 ```
-3. add ssh keys
-Just in case, at first run 
-```
+3. Add ssh keys.
+*Just in case*
+`
 eval $(ssh-agent)
-```
-and only then add private keys
+`
 ```
 ssh-add .vagrant/machines/minio-*/virtualbox/private_key
 ```
-# ad-hoc commands
+### ad-hoc commands
 4. create user within minio's group
 ```
 ansible all -m ansible.builtin.user -a "name=test group=minio state=present create_home=no" -i hosts.ini -b -u vagrant
@@ -28,7 +29,7 @@ ansible all -m ansible.builtin.copy -a "src=test.jpg dest=/home/minio/export1/bu
 python3 download-img.py
 ```
 
-# Тестовое задание
+### Тестовое задание
 
 1. Создать репозиторий (публичный на https://github.com или приватный в нашем гитлабе) для артефактов,
 полученных при работе с тестовым заданием.
