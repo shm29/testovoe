@@ -1,3 +1,33 @@
+1. Check variables presented in playbook.yml, change to your liking if needed
+ 
+2. run vagrant
+```
+vagrant up
+```
+3. add ssh keys
+Just in case, at first run 
+```
+eval $(ssh-agent)
+```
+and only then add private keys
+```
+ssh-add .vagrant/machines/minio-*/virtualbox/private_key
+```
+# ad-hoc commands
+4. create user within minio's group
+```
+ansible all -m ansible.builtin.user -a "name=test group=minio state=present create_home=no" -i hosts.ini -b -u vagrant
+```
+5. copy file to minio's bucket
+```
+ansible all -m ansible.builtin.copy -a "src=test.jpg dest=/home/minio/export1/bucket/ owner=minio group=minio" -i hosts.ini -u vagrant -b && ansible all -m ansible.builtin.copy -a "src=test.jpg dest=/home/minio/export2/bucket/ owner=minio group=minio" -i hosts.ini -u vagrant -b
+```
+
+6. download file with 1000 byte offset
+```
+python3 download-img.py
+```
+
 # Тестовое задание
 
 1. Создать репозиторий (публичный на https://github.com или приватный в нашем гитлабе) для артефактов,

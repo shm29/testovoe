@@ -3,6 +3,7 @@
 minio_dest_bin: /usr/local/bin/
 minio_download_url: https://dl.minio.io/server/minio/release/linux-amd64/minio
 minio_user: minio
+minio_group: minio
 minio_service: minio
 minio_volumes:
   - /home/minio/export1

@@ -1,8 +1,14 @@
 ---
 # tasks file for minio
+- name: create minio group
+  group:
+    name: "{{ minio_group }}"
+    state: present
+
 - name: create minio user
   user:
     name: "{{ minio_user }}"
+    groups: "{{ minio_group }}"
 
 - name: mkdir minio's bin dir
   file:
@@ -21,6 +27,7 @@
     state: directory
     mode: 0755
     owner: "{{ minio_user }}"
+    group: "{{ minio_group }}"
   loop:
     - /home/minio/export1
     - /home/minio/export2

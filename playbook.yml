@@ -6,9 +6,6 @@
       - nginx
       - minio
     vars:
+      hosts_ip: 192.168.57
       minio_access_key: testovoe
-      minio_secret_key: sektretnoe
-      minio_volumes:
-        - /home/minio/export1
-        - /home/minio/export2
-
+      minio_secret_key: sekretnoe
